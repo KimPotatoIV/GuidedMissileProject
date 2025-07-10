@@ -1,0 +1,43 @@
+[gd_scene load_steps=7 format=3 uid="uid://b2t6xhjtp4wcf"]
+
+[ext_resource type="Texture2D" uid="uid://1qmgdalo7gk8" path="res://scenes/fire_ball/fire_ball_sheet.png" id="1_bbov5"]
+[ext_resource type="Script" uid="uid://d2shtri0xkbhu" path="res://scenes/fire_ball/fire_ball.gd" id="1_whkyd"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_whkyd"]
+atlas = ExtResource("1_bbov5")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_15g85"]
+atlas = ExtResource("1_bbov5")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_r13cf"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_whkyd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_15g85")
+}],
+"loop": true,
+"name": &"fire_ball",
+"speed": 8.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_eekt3"]
+radius = 7.0
+
+[node name="FireBall" type="Area2D"]
+script = ExtResource("1_whkyd")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_r13cf")
+animation = &"fire_ball"
+frame_progress = 0.695615
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_eekt3")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+debug_enabled = true
